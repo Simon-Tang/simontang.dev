@@ -1,31 +1,49 @@
+const PageWrapper = require.resolve('./src/layouts/page-wrapper.tsx');
+
 if (process.env.ENVIROMENT !== 'production') {
-  require('dotenv').config()
+  require('dotenv').config();
 }
 
 const contentfulConfig = {
   spaceId: process.env.SPACE_ID,
   accessToken: process.env.ACCESS_TOKEN,
-}
+};
 
 module.exports = {
   siteMetadata: {
-    title: 'Gatsby Contentful TypeScript starter',
+    title: 'Simon Tang',
   },
   plugins: [
+    'gatsby-plugin-netlify',
     'gatsby-plugin-react-helmet',
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
-        name: 'gatsby-starter-contentful-typescript',
-        short_name: 'starter',
+        name: 'Simon Tang',
+        short_name: 'Simon Tang',
         start_url: '/',
-        background_color: '#663399',
-        theme_color: '#663399',
+        background_color: '#403f4c',
+        theme_color: '#403f4c',
         display: 'minimal-ui',
-        icon: 'src/images/gatsby-icon.png', // This path is relative to the root of the site.
+        icon: 'src/assets/images/icon-192.png',
       },
     },
     'gatsby-plugin-offline',
+    {
+      resolve: 'gatsby-plugin-web-font-loader',
+      options: {
+        google: {
+          families: ['Titillium Web:400,600', 'Schoolbell'],
+        },
+      },
+    },
+    {
+      resolve: 'gatsby-plugin-google-analytics',
+      options: {
+        trackingId: 'UA-133742271-1',
+        pageTransitionDelay: 500,
+      },
+    },
     `gatsby-plugin-typescript`,
     'gatsby-transformer-remark',
     'gatsby-plugin-sharp',
@@ -34,7 +52,13 @@ module.exports = {
       options: contentfulConfig,
     },
     {
-      resolve: `gatsby-plugin-emotion`,
+      resolve: `gatsby-plugin-styled-components`,
+    },
+    {
+      resolve: 'gatsby-plugin-transition-link',
+      options: {
+        layout: PageWrapper,
+      },
     },
   ],
-}
+};
