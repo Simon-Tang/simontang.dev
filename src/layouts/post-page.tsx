@@ -1,16 +1,17 @@
-import { INLINES, MARKS, Document } from '@contentful/rich-text-types';
+import { BLOCKS, INLINES, MARKS, Document } from '@contentful/rich-text-types';
 import {
   documentToReactComponents,
   Options,
 } from '@contentful/rich-text-react-renderer';
 import { faGithub } from '@fortawesome/free-brands-svg-icons';
+import { faFileCode } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import * as React from 'react';
 import Helmet from 'react-helmet';
 import styled from 'styled-components';
+import { ButtonLink } from 'src/components/controls/button/button.components';
 import { Program } from 'src/components/desktop/program/program.components';
 import { Programs } from 'src/layouts/page-content';
-import { ButtonLink } from 'src/components/controls/button/button.components';
 import { ContentTheme } from 'src/theme/content.theme';
 import { DesktopTheme } from 'src/theme/desktop.theme';
 
@@ -24,6 +25,46 @@ type PostPageProps = {
 
 const postRendererOptions: Options = {
   renderNode: {
+    [BLOCKS.EMBEDDED_ASSET]: node => {
+      const locale = 'en-US';
+      const {
+        data: {
+          target: {
+            fields: {
+              description: { [locale]: description },
+              file: {
+                [locale]: { url: urlOrig },
+              },
+            },
+          },
+        },
+      } = node;
+      const url = urlOrig.replace(/^\/\//, 'https://');
+      return <img src={url} alt={description} />;
+    },
+    [INLINES.ASSET_HYPERLINK]: node => {
+      const locale = 'en-US';
+      let {
+        // TODO: Parse content
+        // content,
+        data: {
+          target: {
+            fields: {
+              file: {
+                [locale]: { url, fileName },
+              },
+            },
+          },
+        },
+      } = node;
+      url = `https://${url.replace(/^\//, '')}`;
+      const icon = <FontAwesomeIcon icon={faFileCode} />;
+      return (
+        <ButtonLink to={url}>
+          {icon} {fileName}
+        </ButtonLink>
+      );
+    },
     [INLINES.HYPERLINK]: (node, children) => {
       const uri: string = node.data.uri;
       if (
@@ -58,6 +99,9 @@ const postRendererOptions: Options = {
   renderMark: {
     [MARKS.CODE]: text => {
       const isBlock = typeof text === 'string' && text.includes('\n');
+      if (isBlock) {
+        text = (text as string).trimRight();
+      }
       return <code className={isBlock ? 'isBlock' : ''}>{text}</code>;
     },
   },
@@ -73,6 +117,9 @@ const PostBodyWrapper = styled.main`
   h2 {
     font-size: 1.3em;
   }
+  h3 {
+    font-size: 1.125em;
+  }
   code {
     background-color: ${ContentTheme.colors.bkgCodeInline};
   }
@@ -81,6 +128,9 @@ const PostBodyWrapper = styled.main`
     padding: 1em;
     white-space: pre-wrap;
     background-color: ${ContentTheme.colors.bkgCodeBlock};
+  }
+  img {
+    max-width: 100%;
   }
   @media print {
     code,
