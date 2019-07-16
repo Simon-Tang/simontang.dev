@@ -97,6 +97,7 @@ export default (props: BasePageProps) => (
               title='Easy Explanations of Things for Developers'
               gridColSpan={3}
             >
+              {/* TODO: Contentful query */}
               <p>
                 <ButtonLink
                   to='/posts/tfsa-limits-in-javascript'
@@ -107,15 +108,18 @@ export default (props: BasePageProps) => (
                 </ButtonLink>
               </p>
               <p>
-                <em>
-                  Coming soon: An Easy Explanation of UWaterloo Residence Meal
-                  Plans for the Enlightened Racket Developer
-                </em>
+                <ButtonLink
+                  to='/posts/msdos-compilation-in-linux'
+                  multiline={true}
+                >
+                  An Easy Explanation of MS-DOS Compilation for the Liberated
+                  Linux Developer
+                </ButtonLink>
               </p>
               <p>
                 <em>
-                  Coming soon: An Easy Explanation of MS-DOS Compilation for the
-                  Liberated Linux Developer
+                  Coming soon: An Easy Explanation of UWaterloo Residence Meal
+                  Plans for the Enlightened Racket Developer
                 </em>
               </p>
             </Program>
