@@ -139,6 +139,8 @@ exports.createPages = ({ actions, graphql }) => {
             path: `posts/${slug}`,
             component: path.resolve('./src/layouts/post-page.tsx'),
             context: {
+              id: `posts/${slug}`,
+              slug,
               title,
               bodyJson,
             },

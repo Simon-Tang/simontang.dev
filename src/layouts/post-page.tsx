@@ -6,6 +6,7 @@ import {
 import { faGithub } from '@fortawesome/free-brands-svg-icons';
 import { faFileCode } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { DiscussionEmbed } from 'disqus-react';
 import * as React from 'react';
 import Helmet from 'react-helmet';
 import styled from 'styled-components';
@@ -17,6 +18,7 @@ import { DesktopTheme } from 'src/theme/desktop.theme';
 
 type PostPageProps = {
   pageContext: {
+    id: string;
     slug: string;
     title: string;
     bodyJson: Document;
@@ -141,8 +143,17 @@ const PostBodyWrapper = styled.main`
   }
 `;
 
-const PostPage = ({ pageContext: { title, bodyJson } }: PostPageProps) => {
+const PostPage = ({
+  pageContext: { id, slug, title, bodyJson },
+}: PostPageProps) => {
+  const disqusConfig = {
+    url: `https://www.simontang.dev/posts/${slug}`,
+    identifier: id,
+    title: title,
+  };
+
   const pageTitle = title.replace('An Easy Explanation of ', '');
+
   return (
     <>
       <Helmet>
@@ -153,6 +164,9 @@ const PostPage = ({ pageContext: { title, bodyJson } }: PostPageProps) => {
           <PostBodyWrapper>
             {documentToReactComponents(bodyJson, postRendererOptions)}
           </PostBodyWrapper>
+        </Program>
+        <Program title='Comments' style={{ width: 'auto' }}>
+          <DiscussionEmbed shortname='simontang' config={disqusConfig} />
         </Program>
       </Programs>
     </>
