@@ -10,7 +10,7 @@ import { DiscussionEmbed } from 'disqus-react';
 import * as React from 'react';
 import Helmet from 'react-helmet';
 import styled from 'styled-components';
-import { ButtonLink } from 'src/components/controls/button/button.components';
+import { ButtonLink } from 'src/components/atoms/button/button.components';
 import { Program } from 'src/components/desktop/program/program.components';
 import { Programs } from 'src/layouts/page-content';
 import { ContentTheme } from 'src/theme/content.theme';

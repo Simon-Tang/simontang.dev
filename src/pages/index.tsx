@@ -6,7 +6,7 @@ import {
 import { StaticQuery, graphql } from 'gatsby';
 import Helmet from 'react-helmet';
 import * as React from 'react';
-import { ButtonLink } from '../components/controls/button/button.components';
+import { ButtonLink } from '../components/atoms/button/button.components';
 import { Program } from '../components/desktop/program/program.components';
 import { BasePageProps, Programs } from 'src/layouts/page-content';
 import badge_www from '../assets/images/badge_www.gif';

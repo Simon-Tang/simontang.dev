@@ -1,6 +1,6 @@
 import Helmet from 'react-helmet';
 import * as React from 'react';
-import { ButtonLink } from 'src/components/controls/button/button.components';
+import { ButtonLink } from 'src/components/atoms/button/button.components';
 import { Program } from 'src/components/desktop/program/program.components';
 import { BasePageProps, Programs } from 'src/layouts/page-content';
 

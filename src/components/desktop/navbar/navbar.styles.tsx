@@ -1,6 +1,9 @@
 import styled from 'styled-components';
-import { DesktopTheme, GlobalTheme } from '../../../theme/global.theme';
-import { ButtonLink, Button } from '../../controls/button/button.components';
+import {
+  ButtonLink,
+  Button,
+} from 'src/components/atoms/button/button.components';
+import { DesktopTheme, GlobalTheme } from 'src/theme/global.theme';
 
 const { fontFamilies, fontSizes } = DesktopTheme;
 
