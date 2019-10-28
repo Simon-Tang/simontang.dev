@@ -1,7 +1,12 @@
 import * as React from 'react';
+import { documentToReactComponents } from '@contentful/rich-text-react-renderer';
 import { CustomTransitionState } from '../../../layouts/page-content';
-import { ProgramWrapper, PTitleBar, PContent } from './program.styles';
-import { ProgramProps } from './program.types';
+import { PContent, ProgramWrapper, PTitleBar } from './program.styles';
+import {
+  ProgramRichTextDocumentRendererProps,
+  ProgramProps,
+} from './program.types';
+import { PROGRAM_RICH_TEXT_RENDER_OPTIONS } from './program.utils';
 
 export class Program extends React.Component<ProgramProps> {
   public render() {
@@ -27,6 +32,18 @@ export class Program extends React.Component<ProgramProps> {
           </ProgramWrapper>
         )}
       </CustomTransitionState>
+    );
+  }
+}
+
+export class ProgramRichTextDocumentRenderer extends React.Component<
+  ProgramRichTextDocumentRendererProps
+> {
+  public render() {
+    const { richTextDocument } = this.props;
+    return documentToReactComponents(
+      richTextDocument,
+      PROGRAM_RICH_TEXT_RENDER_OPTIONS,
     );
   }
 }

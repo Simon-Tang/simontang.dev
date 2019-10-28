@@ -1,3 +1,5 @@
+import { Document } from '@contentful/rich-text-types';
+
 export type ProgramWrapperProps = {
   gridColSpan?: number;
   gridRowSpan?: number;
@@ -11,4 +13,8 @@ export type ProgramProps = {
   nopadding?: boolean;
   gridColSpan?: number;
   gridRowSpan?: number;
+};
+
+export type ProgramRichTextDocumentRendererProps = {
+  richTextDocument: Document;
 };
