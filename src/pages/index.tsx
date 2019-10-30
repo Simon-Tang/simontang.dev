@@ -41,7 +41,7 @@ export default (props: BasePageProps) => (
             <title>Home</title>
           </Helmet>
           <Programs columns={3}>
-            <Program title='Welcome' gridColSpan={3}>
+            {/* <Program title='Welcome' gridColSpan={3}>
               <p>
                 <strong>
                   {person.firstName} {person.lastName}
@@ -50,7 +50,7 @@ export default (props: BasePageProps) => (
               <ProgramRichTextDocumentRenderer
                 richTextDocument={welcomeBlurb}
               />
-            </Program>
+            </Program> */}
             <Program title='Badges'>
               <p style={{ whiteSpace: 'nowrap' }}>
                 <img src={badge_www} alt='World Wide Web badge' />
