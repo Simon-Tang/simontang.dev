@@ -68,7 +68,9 @@ export default (props: BasePageProps) => (
                 </ButtonLink>
               </p>
               <p>
-                <ButtonLink to='/typing-test'>Typing Test</ButtonLink>
+                <ButtonLink to='/terrible-online-typing-tests'>
+                  Terrible Online Typing Tests
+                </ButtonLink>
               </p>
             </Program>
             <Program

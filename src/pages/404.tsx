@@ -11,10 +11,7 @@ export default (props: BasePageProps) => (
     </Helmet>
     <Programs>
       <Program title='Page not found'>
-        <p>
-          This site has encountered a broken URL. <br />
-          We are sorry for the inconvenience.
-        </p>
+        <p>This site has encountered a broken URL.</p>
         <p style={{ display: 'flex' }}>
           <div style={{ margin: 'auto' }}>
             <ButtonLink to='mailto:simon-tang@outlook.com'>
