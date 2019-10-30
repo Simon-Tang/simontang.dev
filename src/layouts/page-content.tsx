@@ -19,9 +19,9 @@ export type BasePageProps = {
 };
 
 /**
- * Manually sets the 'entering' transitionStatus for a duration of
- * `GlobalTheme.pageTransitions.duration`, as a drop-in replacement for
- * TransitionState from `gatsby-plugin-transition-link`.
+ * A drop-in replacement for TransitionState. Manually sets `'entering'`
+ * transitionStatus on initial page render for a duration of
+ * `GlobalTheme.pageTransitions.duration`.
  */
 export class CustomTransitionState extends React.Component<
   TransitionStateProps,

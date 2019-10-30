@@ -1,14 +1,12 @@
-import { INLINES, MARKS, Document } from '@contentful/rich-text-types';
-import {
-  documentToReactComponents,
-  Options,
-} from '@contentful/rich-text-react-renderer';
+import { Document } from '@contentful/rich-text-types';
 import * as React from 'react';
 import Helmet from 'react-helmet';
 import styled from 'styled-components';
 import { AspectIframe } from 'src/components/atoms/aspect-iframe';
-import { ButtonLink } from 'src/components/atoms/button/button.components';
-import { Program } from 'src/components/desktop/program/program.components';
+import {
+  Program,
+  ProgramRichTextDocumentRenderer,
+} from 'src/components/desktop/program/program.components';
 import { Programs } from 'src/layouts/page-content';
 import { ContentTheme } from 'src/theme/content.theme';
 import { DesktopTheme } from 'src/theme/desktop.theme';
@@ -22,37 +20,6 @@ type ProjectPageProps = {
     descriptionBodyJson: Document;
     linksBodyJson: Document;
   };
-};
-
-const projectRendererOptions: Options = {
-  renderNode: {
-    [INLINES.HYPERLINK]: (node, children) => {
-      const uri = node.data.uri;
-      if (
-        Array.isArray(children) &&
-        children.length === 1 &&
-        typeof children[0] === 'string'
-      ) {
-        // Link text: [label]
-        const m = (children[0] as string).match(/^\[(.*)]$/);
-        if (m) {
-          const label = m[1];
-          return <ButtonLink to={uri}>{label}</ButtonLink>;
-        }
-      }
-      return (
-        <a href={uri} target='_blank' rel='noopener'>
-          {children}
-        </a>
-      );
-    },
-  },
-  renderMark: {
-    [MARKS.CODE]: text => {
-      const isBlock = typeof text === 'string' && text.includes('\n');
-      return <code className={isBlock ? 'isBlock' : ''}>{text}</code>;
-    },
-  },
 };
 
 const ProjectBodyWrapper = styled.main`
@@ -157,15 +124,14 @@ const ProjectPage = ({
         {layout !== 'narrow-frame' && iframeProgram}
         <Program title={descriptionTitle}>
           <ProjectBodyWrapper>
-            {documentToReactComponents(
-              descriptionBodyJson,
-              projectRendererOptions,
-            )}
+            <ProgramRichTextDocumentRenderer
+              richTextDocument={descriptionBodyJson}
+            />
           </ProjectBodyWrapper>
         </Program>
         <Program title='Links'>
           <ProjectBodyWrapper>
-            {documentToReactComponents(linksBodyJson, projectRendererOptions)}
+            <ProgramRichTextDocumentRenderer richTextDocument={linksBodyJson} />
           </ProjectBodyWrapper>
         </Program>
         {layout === 'narrow-frame' && iframeProgram}

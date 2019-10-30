@@ -1,4 +1,4 @@
-import { BLOCKS, INLINES } from '@contentful/rich-text-types';
+import { MARKS, INLINES } from '@contentful/rich-text-types';
 import { Options } from '@contentful/rich-text-react-renderer';
 import * as React from 'react';
 import { ButtonLink } from '../../atoms/button/button.components';
@@ -24,6 +24,12 @@ export const PROGRAM_RICH_TEXT_RENDER_OPTIONS: Options = {
           {children}
         </a>
       );
+    },
+  },
+  renderMark: {
+    [MARKS.CODE]: text => {
+      const isBlock = typeof text === 'string' && text.includes('\n');
+      return <code className={isBlock ? 'isBlock' : ''}>{text}</code>;
     },
   },
 };
