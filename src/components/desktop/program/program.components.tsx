@@ -11,6 +11,7 @@ import { PROGRAM_RICH_TEXT_RENDER_OPTIONS } from './program.utils';
 export class Program extends React.Component<ProgramProps> {
   public render() {
     const {
+      className,
       style,
       title,
       children,
@@ -22,6 +23,7 @@ export class Program extends React.Component<ProgramProps> {
       <CustomTransitionState>
         {({ transitionStatus }) => (
           <ProgramWrapper
+            className={className}
             style={style}
             transitionStatus={transitionStatus}
             gridColSpan={gridColSpan}

@@ -87,6 +87,19 @@ exports.createPages = ({ actions, graphql }) => {
               }
             }
           }
+          allContentfulTypingTest {
+            edges {
+              node {
+                title
+                slug
+                categories
+                preview
+                passage {
+                  passage
+                }
+              }
+            }
+          }
         }
       `).then(result => {
         if (result.errors) {
@@ -169,6 +182,21 @@ exports.createPages = ({ actions, graphql }) => {
               descriptionBodyJson,
               linksBodyJson,
             },
+          });
+        });
+
+        const typingTests = result.data.allContentfulTypingTest.edges.map(
+          ({ node }) => ({
+            ...node,
+            passage: node.passage.passage,
+          }),
+        );
+        typingTests.forEach(typingTest => {
+          const { slug } = typingTest;
+          createPage({
+            path: `terrible-online-typing-tests/${slug}`,
+            component: path.resolve('./src/layouts/typing-test-page.tsx'),
+            context: { typingTest },
           });
         });
       }),

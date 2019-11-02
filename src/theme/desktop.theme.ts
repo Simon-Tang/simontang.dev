@@ -36,5 +36,6 @@ export const DesktopTheme = {
   },
   breakpoints: {
     desktop: '600px',
+    desktopWide: '800px',
   },
 };

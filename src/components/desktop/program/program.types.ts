@@ -7,6 +7,7 @@ export type ProgramWrapperProps = {
 };
 
 export type ProgramProps = {
+  className?: string;
   style?: React.CSSProperties;
   title: React.ReactNode;
   children: React.ReactNode;
