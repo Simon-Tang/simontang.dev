@@ -32,6 +32,9 @@ export const Button = styled.button<{ multiline?: boolean }>`
   :active {
     background: ${colors.bkgActive};
   }
+  :disabled {
+    background: ${colors.bkgDisabled};
+  }
 `;
 
 type ButtonLinkProps = { to: string; multiline?: boolean };
@@ -73,3 +76,26 @@ export const ButtonLink = styled(Button).attrs<ButtonLinkProps>(({ to }) => ({
         height: 14px;
       `}
 `;
+
+export const TwitterSocialLink = ({
+  children,
+  tweet,
+  url,
+  hashtags = [],
+}: {
+  children: string;
+  tweet: string;
+  url: string;
+  hashtags?: string[];
+}) => {
+  const textE = encodeURIComponent(tweet);
+  const urlE = encodeURIComponent(url);
+  const hashtagsE = encodeURIComponent(hashtags.join(','));
+  return (
+    <ButtonLink
+      to={`https://twitter.com/share?text=${textE}&url=${urlE}/&hashtags=${hashtagsE}`}
+    >
+      {children}
+    </ButtonLink>
+  );
+};

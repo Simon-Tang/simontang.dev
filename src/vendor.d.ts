@@ -15,3 +15,10 @@ declare module 'gatsby-plugin-transition-link' {
 
   export class TransitionLink extends React.Component<TransitionLinkProps> {}
 }
+
+// disqus-react
+interface DisqusConfig {
+  url: string;
+  identifier: string;
+  title: string;
+}

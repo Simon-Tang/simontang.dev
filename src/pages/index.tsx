@@ -52,14 +52,14 @@ export default (props: BasePageProps) => (
               />
             </Program> */}
             <Program title='Badges'>
-              <p style={{ whiteSpace: 'nowrap' }}>
-                <img src={badge_www} alt='World Wide Web badge' />
+              <img src={badge_www} alt='World Wide Web badge' />
+              <div style={{ whiteSpace: 'nowrap' }}>
                 <img src={badge_netscape} alt='Netscape 3.0 badge' />
                 <img
                   src={badge_noframes}
                   alt='"Campaign against frames" badge'
                 />
-              </p>
+              </div>
             </Program>
             <Program title='Programs'>
               <p>
