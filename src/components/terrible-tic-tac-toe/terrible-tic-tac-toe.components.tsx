@@ -53,8 +53,8 @@ export const TerribleTicTacToe = ({
           <tr key={rowIndex}>
             {row.map((cell, cellIndex) => (
               <td key={cellIndex}>
-                <div className='cellWrapper'>
-                  <Input aria-role='' value={cell} size={4} disabled></Input>
+                <div className='cell-wrapper'>
+                  <Input aria-role='' value={cell} disabled></Input>
                   <Button
                     id={`tic-tac-toe-${rowIndex}-${cellIndex}`}
                     onClick={() => handleEditCell(rowIndex, cellIndex)}

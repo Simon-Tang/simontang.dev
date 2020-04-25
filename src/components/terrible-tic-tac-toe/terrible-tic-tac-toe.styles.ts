@@ -1,10 +1,14 @@
 import styled from 'styled-components';
+import { Input } from 'src/components/atoms/input/input.components';
 
 export const StyledTicTacToeTable = styled.table`
-  .cellWrapper {
+  .cell-wrapper {
     display: flex;
+    margin: 0 4px 4px 0;
   }
-  .cellWrapper > :first-child {
+
+  .cell-wrapper ${Input} {
+    width: 12px;
     margin-right: 4px;
   }
 `;
